@@ -15,12 +15,6 @@ RUN wget https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV JIRA_HOME /var/atlassian/application-data/jira
 
-RUN sed -i 's/<\/Service>/<Connector port="8443" protocol="org.apache.coyote.http11.Http11Protocol" maxHttpHeaderSize="8192" \
-    SSLEnabled="true" maxThreads="150" minSpareThreads="25" enableLookups="false" disableUploadTimeout="true" acceptCount="100" \
-    scheme="https" secure="true" clientAuth="false" sslProtocol="TLS" useBodyEncodingForURI="true" keyAlias="dummyalias" \
-    keystoreFile="dummypath" keystorePass="dummypass" keystoreType="JKS"\/><\/Service>/g' \
-    /opt/atlassian/atlassian-jira-software-7.1.7-standalone/conf/server.xml
-
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
 
