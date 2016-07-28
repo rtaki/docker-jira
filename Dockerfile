@@ -15,4 +15,7 @@ RUN wget https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV JIRA_HOME /var/atlassian/application-data/jira
 
-ENTRYPOINT ["/opt/atlassian/atlassian-jira-software-7.1.7-standalone/bin/start-jira.sh", "-fg"]
+COPY entrypoint.sh /sbin/entrypoint.sh
+RUN chmod 755 /sbin/entrypoint.sh
+
+ENTRYPOINT ["/sbin/entrypoint.sh"]
